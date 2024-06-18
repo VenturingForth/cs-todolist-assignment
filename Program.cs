@@ -5,12 +5,19 @@ Console.WriteLine("[R]emove a TODO");
 Console.WriteLine("[E]xit");
 
 string userChoice = Console.ReadLine();
+List<string> toDoList = new List<string>()
+{
+    "Order a cake for the birthday party.",
+    "Buy train tickets for the weekend.",
+    "Take Lucky to the vet."
+};
 
 switch (userChoice)
 {
     case "S":
     case "s":
         PrintSelectedOption("See all TODOs");
+        SeeAllToDos();
         break;
     case "A":
     case "a":
@@ -32,6 +39,14 @@ switch (userChoice)
 void PrintSelectedOption(string selectedOption)
 {
     Console.WriteLine($"Selected option: {selectedOption}");
+}
+
+void SeeAllToDos()
+{
+    foreach (string toDo in toDoList)
+    {
+        Console.WriteLine($"{toDoList.IndexOf(toDo) + 1}. {toDo}");
+    };
 }
 
 Console.ReadKey();
