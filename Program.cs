@@ -41,8 +41,7 @@ do
             Console.WriteLine("Invalid choice");
             break;
     }
-    Console.WriteLine($"User Choice: {userChoice}");
-} while (userChoice != "E" || userChoice != "e");
+} while (userChoice != "E" && userChoice != "e");
 
 void PrintSelectedOption(string selectedOption)
 {
@@ -63,5 +62,3 @@ void AddToDo()
     string newToDo = Console.ReadLine();
     toDoList.Add(newToDo);
 }
-
-Console.ReadKey();
