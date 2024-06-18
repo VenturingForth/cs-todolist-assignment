@@ -1,11 +1,6 @@
-﻿List<string> toDoList = new List<string>()
-{
-    "Order a cake for the birthday party.",
-    "Buy train tickets for the weekend.",
-    "Take Lucky to the vet."
-};
-
+﻿List<string> toDoList = new List<string>();
 string userChoice;
+
 Console.WriteLine("Hello!");
 
 do
@@ -50,6 +45,10 @@ void PrintSelectedOption(string selectedOption)
 
 void SeeAllToDos()
 {
+    if (toDoList.Count == 0)
+    {
+        Console.WriteLine("No TODOs have been added yet.");
+    }
     foreach (string toDo in toDoList)
     {
         Console.WriteLine($"{toDoList.IndexOf(toDo) + 1}. {toDo}");
@@ -60,5 +59,9 @@ void AddToDo()
 {
     Console.WriteLine("Enter the TODO description:");
     string newToDo = Console.ReadLine();
+    if (newToDo.Length == 0)
+    {
+
+    }
     toDoList.Add(newToDo);
 }
