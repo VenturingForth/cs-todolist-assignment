@@ -33,7 +33,7 @@ do
             PrintSelectedOption("Exit");
             break;
         default:
-            Console.WriteLine("Invalid choice");
+            Console.WriteLine("Incorrect input.");
             break;
     }
 } while (userChoice != "E" && userChoice != "e");
@@ -49,19 +49,35 @@ void SeeAllToDos()
     {
         Console.WriteLine("No TODOs have been added yet.");
     }
-    foreach (string toDo in toDoList)
+    else
     {
-        Console.WriteLine($"{toDoList.IndexOf(toDo) + 1}. {toDo}");
-    };
+        foreach (string toDo in toDoList)
+        {
+            Console.WriteLine($"{toDoList.IndexOf(toDo) + 1}. {toDo}");
+        };
+    }
 }
 
 void AddToDo()
 {
-    Console.WriteLine("Enter the TODO description:");
-    string newToDo = Console.ReadLine();
-    if (newToDo.Length == 0)
+    bool toDoAdded = false;
+    do
     {
-
-    }
-    toDoList.Add(newToDo);
+        Console.WriteLine("Enter the TODO description:");
+        string newToDo = Console.ReadLine();
+        if (newToDo.Length == 0)
+        {
+            Console.WriteLine("The description cannot be empty.");
+        }
+        else if (toDoList.Contains(newToDo))
+        {
+            Console.WriteLine("The description must be unique.");
+        }
+        else
+        {
+            toDoList.Add(newToDo);
+            Console.WriteLine($"TODO successfully added: {newToDo}");
+            toDoAdded = true;
+        }
+    } while (!toDoAdded);
 }
