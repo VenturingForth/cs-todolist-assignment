@@ -27,6 +27,7 @@ do
         case "R":
         case "r":
             PrintSelectedOption("Remove a TODO");
+            RemoveToDo();
             break;
         case "E":
         case "e":
@@ -80,4 +81,41 @@ void AddToDo()
             toDoAdded = true;
         }
     } while (!toDoAdded);
+}
+
+void RemoveToDo()
+{
+    bool toDoRemoved = false;
+    do
+    {
+        Console.WriteLine("Select the index of the TODO you want to remove:");
+        SeeAllToDos();
+        if (toDoList.Count == 0)
+        {
+            break;
+        }
+        string indexToRemove = (Console.ReadLine());
+        if (indexToRemove.Length == 0)
+        {
+            Console.WriteLine("Selected index cannot be empty");
+            continue;
+        }
+
+        bool isParsingSuccessful = int.TryParse(indexToRemove, out int parsedIndexToRemove);
+        if (isParsingSuccessful)
+        {
+            if(parsedIndexToRemove > toDoList.Count || parsedIndexToRemove <= 0)
+            {
+                Console.WriteLine("The given index is not valid.");
+                continue;
+            }
+            Console.WriteLine($"TODO removed: {toDoList.ElementAt(parsedIndexToRemove - 1)}");
+            toDoList.Remove(toDoList.ElementAt(parsedIndexToRemove - 1));
+            toDoRemoved = true;
+        } else
+        {
+            Console.WriteLine("The given index is not valid.");
+        }
+
+    } while (!toDoRemoved);
 }
